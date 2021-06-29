@@ -1,10 +1,23 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace repository_unitofwork.Abstractions
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<TEntity> where TEntity : class
     {
-        Task Add(T entity);
+        void Add(TEntity entity);
+
+        void AddRange(IEnumerable<TEntity> entities);
+
+        TEntity Get(Guid id);
+
+        IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> query);
+
+        void Update(TEntity entity);
+
+        void Delete(TEntity entity);
     }
 }
 
