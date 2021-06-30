@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Query;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -18,6 +19,8 @@ namespace repository_unitofwork.Abstractions
         void Update(TEntity entity);
 
         void Delete(TEntity entity);
+
+        IIncludableQueryable<TEntity, TProperty> Include<TProperty>(Expression<Func<TEntity, TProperty>> expression);
     }
 }
 
